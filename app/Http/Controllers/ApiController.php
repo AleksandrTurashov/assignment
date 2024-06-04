@@ -11,7 +11,7 @@ class ApiController extends Controller
 {
     public function sendListAction(){
         $employees = Employee::select('id','name', 'patronymic', 'surname')->get();
-        return $employees->toArray();
+        return $employees->toJson();
     }
 
     public function infoEmployeeAction(Request $request){
@@ -20,14 +20,14 @@ class ApiController extends Controller
             $result = ["msg"=>"not found", "code" => "404"];
             return $result;
         }
-        return $employee->toArray();
+        return $employee->toJson();
     }
 
     public function addEmployeeAction(Request $request){
         $validator = DataValidator::addEmployee($request);
         if($validator->fails()){
             $result = ["msg"=>"bad request", "code" => "400"];
-            return $result;
+            return json_encode($result);
         }
         $employee = new Employee;
 
@@ -46,6 +46,6 @@ class ApiController extends Controller
         $employee->save();
 
         $result = ["msg"=>"success", "code" => "200"];
-        return  $result;
+        return  json_encode($result);
     }
 }

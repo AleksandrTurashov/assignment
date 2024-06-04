@@ -15,8 +15,8 @@ use App\Http\Controllers\ApiController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-
-Route::get('/employee', [ApiController::class, 'sendListAction']);
-Route::post('/info', [ApiController::class, 'infoEmployeeAction']);
-Route::post('/addemployee', [ApiController::class, 'addEmployeeAction']);
+Route::controller(ApiController::class)->group(function(){
+    Route::get('/employee', 'sendListAction');
+    Route::post('/info','infoEmployeeAction');
+    Route::post('/addemployee','addEmployeeAction');
+});

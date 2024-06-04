@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Http\Validators\DataValidator;
 
+
+
+
+use Illuminate\Support\Facades\Http;
+
+
+
+
+
 class IndexController extends Controller
 {  
     public function indexAction(){
@@ -45,6 +54,5 @@ class IndexController extends Controller
         $employees= Employee::get();
         return view('pages.employee', compact('employees'));
     }
-
     
 }
